@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102544">
+<title>JFC VEDA VINA POTTI | BIBLE TEST 2026</title>
+<style>
+  :root {
+    --navy: #102544;
+    --navy-2: #19385f;
+    --accent: #e3a43b;
+    --paper: #ffffff;
+    --page: #f3f6fa;
+    --ink: #1c2b3d;
+    --muted: #607086;
+    --line: #dbe3ed;
+    --success: #18794e;
+    --success-bg: #eaf7ef;
+    --danger: #b42318;
+    --danger-bg: #fff0ee;
+    --shadow: 0 16px 40px rgba(16, 37, 68, .09);
+  }
+  * { box-sizing: border-box; }
+  html { color-scheme: light; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.5;
+  }
+  button, input { font: inherit; }
+  button { cursor: pointer; }
+  button:focus-visible, input:focus-visible, a:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+  }
+  .demo-ribbon {
+    background: #fff4dc;
+    border-bottom: 1px solid #f0d59e;
+    color: #6b4a0c;
+    text-align: center;
+    padding: 8px 14px;
+    font-size: .82rem;
+    font-weight: 750;
+    letter-spacing: .02em;
+  }
+  .site-header {
+    background: var(--navy);
+    color: white;
+    border-bottom: 4px solid var(--accent);
+  }
+  .header-inner {
+    width: min(1120px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 22px 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .crest {
+    width: 58px;
+    height: 64px;
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    border-radius: 18px 18px 22px 22px;
+    font-weight: 900;
+    font-size: 1.35rem;
+    letter-spacing: -.06em;
+    position: relative;
+  }
+  .crest::after {
+    content: "✦";
+    position: absolute;
+    bottom: 4px;
+    font-size: .65rem;
+  }
+  .school-name {
+    margin: 0;
+    font-family: "Arial Black", "Montserrat", "Inter", ui-sans-serif, system-ui, sans-serif;
+    font-size: clamp(1.02rem, 2.8vw, 1.62rem);
+    font-weight: 950;
+    line-height: 1.18;
+    letter-spacing: .025em;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+  .exam-name { margin: 6px 0 0; color: #d7e1ef; font-size: .94rem; }
+  .header-tag {
+    margin-left: auto;
+    align-self: center;
+    border: 1px solid rgba(255,255,255,.32);
+    border-radius: 999px;
+    padding: 7px 12px;
+    color: #f6e3bd;
+    font-size: .75rem;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  main { width: min(1120px, calc(100% - 40px)); margin: 34px auto 48px; }
+  .intro { margin: 0 0 22px; }
+  .eyebrow {
+    color: #9b6717;
+    font-size: .76rem;
+    font-weight: 850;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+  }
+  h2 { color: var(--navy); margin: 6px 0 8px; font-size: clamp(1.55rem, 4vw, 2.1rem); letter-spacing: -.04em; }
+  .intro p { margin: 0; color: var(--muted); max-width: 650px; }
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(260px, .75fr);
+    gap: 22px;
+    align-items: start;
+  }
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .card-head { padding: 23px 25px 18px; border-bottom: 1px solid var(--line); }
+  .card-head h3 { margin: 0; color: var(--navy); font-size: 1.1rem; }
+  .card-head p { margin: 5px 0 0; color: var(--muted); font-size: .9rem; }
+  .form-body { padding: 24px 25px 26px; }
+  .field { margin-bottom: 19px; }
+  label { display: block; font-weight: 750; font-size: .91rem; margin-bottom: 7px; }
+  input {
+    width: 100%;
+    min-height: 48px;
+    border: 1px solid #c8d3e0;
+    border-radius: 10px;
+    padding: 11px 13px;
+    color: var(--ink);
+    background: white;
+  }
+  input::placeholder { color: #8a97a8; }
+  input[aria-invalid="true"] { border-color: var(--danger); }
+  .field-hint { color: var(--muted); font-size: .8rem; margin: 6px 0 0; }
+  .error {
+    color: var(--danger);
+    background: var(--danger-bg);
+    border: 1px solid #ffd0cb;
+    padding: 11px 12px;
+    border-radius: 9px;
+    margin: 0 0 16px;
+    font-size: .9rem;
+  }
+  [hidden] { display: none !important; }
+  .primary, .secondary {
+    min-height: 46px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    padding: 11px 17px;
+    font-weight: 800;
+    transition: transform .15s ease, background .15s ease;
+  }
+  .primary { background: var(--navy); color: white; width: 100%; }
+  .primary:hover { background: var(--navy-2); }
+  .secondary { background: white; color: var(--navy); border-color: #c8d3e0; }
+  .secondary:hover { background: #f1f5fa; }
+  button:active { transform: translateY(1px); }
+  .side-card { padding: 23px; }
+  .side-icon {
+    display: grid; place-items: center; width: 42px; height: 42px;
+    background: #fff4dc; color: #8b5b12; border-radius: 12px; font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+  .side-card h3 { color: var(--navy); margin: 0 0 8px; font-size: 1.03rem; }
+  .side-card p { color: var(--muted); font-size: .9rem; margin: 0; }
+  .side-card ul { padding-left: 19px; margin: 15px 0 0; color: var(--muted); font-size: .88rem; }
+  .side-card li + li { margin-top: 8px; }
+  .sample-chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    color: #76500f; background: #fff4dc; border: 1px solid #f0d59e;
+    padding: 6px 10px; border-radius: 999px; font-size: .75rem; font-weight: 850;
+  }
+  .sample-chip::before { content: ""; width: 7px; height: 7px; background: var(--accent); border-radius: 50%; }
+  #resultPanel { margin-top: 25px; }
+  .result-top {
+    padding: 24px 26px;
+    background: var(--navy);
+    color: white;
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+  }
+  .result-top h3 { margin: 8px 0 4px; font-size: 1.35rem; }
+  .result-top p { margin: 0; color: #d7e1ef; font-size: .9rem; }
+  .result-top .sample-chip { background: rgba(255,255,255,.1); color: #ffe5ad; border-color: rgba(255,255,255,.22); }
+  .result-body { padding: 25px 26px 27px; }
+  .student-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 13px; margin-bottom: 24px; }
+  .student-item { background: #f5f7fb; border: 1px solid #e4eaf2; border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .student-item span { display: block; color: var(--muted); font-size: .74rem; margin-bottom: 4px; }
+  .student-item strong { display: block; color: var(--navy); font-size: .9rem; overflow-wrap: anywhere; }
+  .section-title { color: var(--navy); font-size: 1rem; margin: 0 0 12px; }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 11px; }
+  table { width: 100%; border-collapse: collapse; font-size: .9rem; min-width: 510px; }
+  thead { background: #edf2f8; color: var(--navy); }
+  th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--line); }
+  th { font-size: .79rem; letter-spacing: .02em; }
+  td:nth-child(n+2), th:nth-child(n+2) { text-align: center; }
+  tbody tr:last-child td { border-bottom: 0; }
+  .grade { display: inline-block; min-width: 30px; text-align: center; font-weight: 850; color: var(--navy); }
+  .grade.fail { color: var(--danger); }
+  .summary-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
+  .summary-item { padding: 15px; border-radius: 12px; background: #f5f7fb; border: 1px solid #e4eaf2; }
+  .summary-item span { display: block; font-size: .77rem; color: var(--muted); margin-bottom: 5px; }
+  .summary-item strong { color: var(--navy); font-size: 1.18rem; }
+  .status-pass, .status-fail { display: inline-flex; border-radius: 999px; padding: 5px 9px; font-size: .78rem !important; font-weight: 850; }
+  .status-pass { background: var(--success-bg); color: var(--success) !important; }
+  .status-fail { background: var(--danger-bg); color: var(--danger) !important; }
+  .result-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .result-actions .primary { width: auto; }
+  .provisional { margin: 18px 0 0; padding-top: 15px; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
+  footer { background: white; border-top: 1px solid var(--line); }
+  .footer-inner { width: min(1120px, calc(100% - 40px)); margin: auto; padding: 20px 0; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; color: var(--muted); font-size: .8rem; }
+  .footer-inner strong { color: var(--navy); }
+  .footer-note { width: 100%; color: #8a5d16; font-weight: 700; }
+  @media (max-width: 760px) {
+    .header-inner, main, .footer-inner { width: min(100% - 28px, 600px); }
+    .header-inner { padding: 18px 0; gap: 12px; }
+    .crest { width: 48px; height: 54px; font-size: 1.1rem; }
+    .header-tag { display: none; }
+    main { margin-top: 25px; }
+    .layout { grid-template-columns: 1fr; }
+    .card-head, .form-body { padding-left: 19px; padding-right: 19px; }
+    .side-card { padding: 19px; }
+    .student-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .result-top, .result-body { padding: 20px 17px; }
+    .result-top { flex-direction: column; }
+  }
+  @media print {
+    body { background: white; }
+    .demo-ribbon, .site-header, .intro, #lookupSection, .side-card, footer, .result-actions { display: none !important; }
+    main { width: 100%; margin: 0; }
+    #resultPanel { margin: 0; }
+    .card { box-shadow: none; border: 0; }
+    .result-top { background: white !important; color: var(--navy); border-bottom: 2px solid var(--navy); padding: 12px 0; }
+    .result-top p { color: var(--muted); }
+    .result-body { padding: 15px 0; }
+    .student-grid { grid-template-columns: repeat(4, 1fr); }
+    .summary-grid { grid-template-columns: repeat(4, 1fr); }
+    .provisional { color: #333; }
+  }
+</style>
+</head>
+<body>
+  <div class="demo-ribbon" role="note">DEMO PORTAL · ALL STUDENT RECORDS ARE FICTIONAL SAMPLE DATA</div>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="crest" aria-label="JFC Veda Vina Potti crest placeholder">JFC</div>
+      <div>
+        <h1 class="school-name" id="schoolName">JFC VEDA VINA POTTI</h1>
+        <p class="exam-name">BIBLE TEST 2026 · Results Portal</p>
+      </div>
+      <div class="header-tag">SAMPLE DATA ONLY</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="pageTitle">
+      <div class="eyebrow">Academic records</div>
+      <h2 id="pageTitle">Student Results</h2>
+      <p>Enter the sample register number and date of birth to view a demonstration result statement.</p>
+    </section>
+
+    <div class="layout" id="lookupSection">
+      <section class="card" aria-labelledby="lookupHeading">
+        <div class="card-head">
+          <h3 id="lookupHeading">Find your result</h3>
+          <p>Use one of the fictional student records listed in this demo.</p>
+        </div>
+        <form class="form-body" id="lookupForm" novalidate>
+          <div class="field">
+            <label for="registerNumber">Register Number</label>
+            <input id="registerNumber" name="registerNumber" type="text" inputmode="numeric" autocomplete="off" placeholder="e.g. 100001" aria-describedby="registerHint" required>
+            <p class="field-hint" id="registerHint">Enter a 6-digit sample register number.</p>
+          </div>
+          <div class="field">
+            <label for="dob">Date of Birth</label>
+            <input id="dob" name="dob" type="date" autocomplete="bday" required>
+            <p class="field-hint">Use the date of birth associated with the sample record.</p>
+          </div>
+          <div class="error" id="errorMessage" role="alert" aria-live="polite" hidden></div>
+          <button class="primary" type="submit">View Result <span aria-hidden="true">→</span></button>
+          <p class="field-hint" style="margin-top:13px">Sample data for demonstration only. This portal does not connect to a school database.</p>
+        </form>
+      </section>
+
+      <aside class="card side-card" aria-labelledby="demoInfoHeading">
+        <div class="side-icon" aria-hidden="true">✦</div>
+        <h3 id="demoInfoHeading">About this demo</h3>
+        <p>This is a front-end sample showing how an exam result lookup could work. It is not an official school portal.</p>
+        <ul>
+          <li>Five fictional student profiles</li>
+          <li>Subject-wise marks and grades</li>
+          <li>Pass and fail examples</li>
+          <li>Printable result statement</li>
+        </ul>
+        <p style="margin-top:16px"><span class="sample-chip">Sample data only</span></p>
+      </aside>
+    </div>
+
+    <section class="card" id="resultPanel" aria-labelledby="resultHeading" hidden aria-live="polite">
+      <div class="result-top">
+        <div>
+          <span class="sample-chip">DEMONSTRATION RESULT</span>
+          <h3 id="resultHeading">BIBLE TEST 2026</h3>
+          <p id="resultSubtitle">Sample student result statement</p>
+        </div>
+        <div aria-hidden="true" style="font-size:2rem;color:var(--accent)">✦</div>
+      </div>
+      <div class="result-body" id="printArea">
+        <h4 class="section-title">Student details</h4>
+        <div class="student-grid" id="studentDetails"></div>
+        <h4 class="section-title">Subject-wise marks</h4>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Subject</th>
+                <th scope="col">Marks Obtained</th>
+                <th scope="col">Maximum Marks</th>
+                <th scope="col">Grade</th>
+              </tr>
+            </thead>
+            <tbody id="marksRows"></tbody>
+          </table>
+        </div>
+        <div class="summary-grid" id="resultSummary"></div>
+        <div class="result-actions">
+          <button class="secondary" type="button" id="anotherButton">← Check another result</button>
+          <button class="primary" type="button" id="downloadButton">Download as PDF ↓</button>
+        </div>
+        <p class="provisional"><strong>Note:</strong> Results are provisional and shown for demonstration only. This page contains fictional sample records and is not an official academic document.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div><strong id="footerSchoolName">JFC VEDA VINA POTTI</strong> · BIBLE TEST 2026</div>
+      <div>Demo interface · No real student data</div>
+      <div class="footer-note">All results are provisional. Sample data for demonstration only.</div>
+    </div>
+  </footer>
+
+<script>
+  // Change this label to your fictional school's name if desired.
+  const SCHOOL_NAME = "JFC VEDA VINA POTTI";
+  document.getElementById("schoolName").textContent = SCHOOL_NAME;
+  document.getElementById("footerSchoolName").textContent = SCHOOL_NAME;
+  document.title = `${SCHOOL_NAME} | BIBLE TEST 2026`;
+
+  // Fictional demo records only. Do not put real student data in this client-side array.
+  const students = [
+    {
+      registerNumber: "100001", dob: "2010-04-12", name: "Aarav Kumar",
+      marks: { Tamil: 88, English: 91, Mathematics: 95, Science: 89, "Social Science": 92 }
+    },
+    {
+      registerNumber: "100002", dob: "2010-08-23", name: "Diya Raman",
+      marks: { Tamil: 94, English: 87, Mathematics: 90, Science: 93, "Social Science": 96 }
+    },
+    {
+      registerNumber: "100003", dob: "2010-01-17", name: "Kavin Raj",
+      marks: { Tamil: 72, English: 68, Mathematics: 74, Science: 61, "Social Science": 70 }
+    },
+    {
+      registerNumber: "100004", dob: "2010-11-05", name: "Meera Selvan",
+      marks: { Tamil: 81, English: 77, Mathematics: 32, Science: 28, "Social Science": 69 }
+    },
+    {
+      registerNumber: "100005", dob: "2010-06-30", name: "Nila Prakash",
+      marks: { Tamil: 98, English: 95, Mathematics: 99, Science: 97, "Social Science": 94 }
+    }
+  ];
+
+  const subjects = ["Tamil", "English", "Mathematics", "Science", "Social Science"];
+  const MAX_MARKS = 100;
+  const PASS_MARK = 35;
+  const form = document.getElementById("lookupForm");
+  const registerInput = document.getElementById("registerNumber");
+  const dobInput = document.getElementById("dob");
+  const errorMessage = document.getElementById("errorMessage");
+  const resultPanel = document.getElementById("resultPanel");
+  const lookupSection = document.getElementById("lookupSection");
+
+  function gradeFor(mark) {
+    if (mark >= 90) return "A1";
+    if (mark >= 80) return "A2";
+    if (mark >= 70) return "B1";
+    if (mark >= 60) return "B2";
+    if (mark >= 50) return "C1";
+    if (mark >= 40) return "C2";
+    if (mark >= PASS_MARK) return "D";
+    return "E";
+  }
+
+  function showError(message, inputToFocus) {
+    errorMessage.textContent = message;
+    errorMessage.hidden = false;
+    if (inputToFocus) {
+      inputToFocus.setAttribute("aria-invalid", "true");
+      inputToFocus.focus();
+    }
+  }
+
+  function clearErrors() {
+    errorMessage.textContent = "";
+    errorMessage.hidden = true;
+    [registerInput, dobInput].forEach(input => input.removeAttribute("aria-invalid"));
+  }
+
+  function detail(label, value) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "student-item";
+    const labelNode = document.createElement("span");
+    labelNode.textContent = label;
+    const valueNode = document.createElement("strong");
+    valueNode.textContent = value;
+    wrapper.append(labelNode, valueNode);
+    return wrapper;
+  }
+
+  function displayResult(student) {
+    const marks = subjects.map(subject => student.marks[subject]);
+    const total = marks.reduce((sum, mark) => sum + mark, 0);
+    const maximum = subjects.length * MAX_MARKS;
+    const percentage = (total / maximum) * 100;
+    const passed = marks.every(mark => mark >= PASS_MARK);
+    const overallGrade = gradeFor(Math.floor(percentage));
+
+    document.getElementById("studentDetails").replaceChildren(
+      detail("Student name", student.name),
+      detail("Register number", student.registerNumber),
+      detail("Date of birth", formatDate(student.dob)),
+      detail("School", SCHOOL_NAME)
+    );
+
+    const rows = document.getElementById("marksRows");
+    rows.replaceChildren();
+    subjects.forEach(subject => {
+      const mark = student.marks[subject];
+      const row = document.createElement("tr");
+      const subjectCell = document.createElement("td");
+      subjectCell.textContent = subject;
+      const obtainedCell = document.createElement("td");
+      obtainedCell.textContent = String(mark);
+      const maxCell = document.createElement("td");
+      maxCell.textContent = String(MAX_MARKS);
+      const gradeCell = document.createElement("td");
+      const grade = document.createElement("span");
+      grade.className = "grade" + (mark < PASS_MARK ? " fail" : "");
+      grade.textContent = gradeFor(mark);
+      gradeCell.appendChild(grade);
+      row.append(subjectCell, obtainedCell, maxCell, gradeCell);
+      rows.appendChild(row);
+    });
+
+    const summary = document.getElementById("resultSummary");
+    summary.replaceChildren();
+    summary.append(
+      summaryCard("Total marks", `${total} / ${maximum}`),
+      summaryCard("Percentage", `${percentage.toFixed(2)}%`),
+      statusCard("Overall result", passed ? "PASS" : "FAIL", passed),
+      summaryCard("Overall grade", overallGrade)
+    );
+
+    document.getElementById("resultSubtitle").textContent =
+      `${student.name} · Register No. ${student.registerNumber}`;
+    resultPanel.hidden = false;
+    resultPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function summaryCard(label, value) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "summary-item";
+    const labelNode = document.createElement("span");
+    labelNode.textContent = label;
+    const valueNode = document.createElement("strong");
+    valueNode.textContent = value;
+    wrapper.append(labelNode, valueNode);
+    return wrapper;
+  }
+
+  function statusCard(label, value, passed) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "summary-item";
+    const labelNode = document.createElement("span");
+    labelNode.textContent = label;
+    const valueNode = document.createElement("strong");
+    valueNode.textContent = value;
+    valueNode.className = passed ? "status-pass" : "status-fail";
+    wrapper.append(labelNode, valueNode);
+    return wrapper;
+  }
+
+  function formatDate(isoDate) {
+    const [year, month, day] = isoDate.split("-").map(Number);
+    return new Intl.DateTimeFormat("en-GB", {
+      day: "2-digit", month: "short", year: "numeric", timeZone: "UTC"
+    }).format(new Date(Date.UTC(year, month - 1, day)));
+  }
+
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+    clearErrors();
+    resultPanel.hidden = true;
+
+    const registerNumber = registerInput.value.trim();
+    const dob = dobInput.value;
+
+    if (!registerNumber) {
+      showError("Please enter a register number.", registerInput);
+      return;
+    }
+    if (!/^\d{6}$/.test(registerNumber)) {
+      showError("Register number must be 6 digits (for example, 100001).", registerInput);
+      return;
+    }
+    if (!dob) {
+      showError("Please select a date of birth.", dobInput);
+      return;
+    }
+
+    const student = students.find(record =>
+      record.registerNumber === registerNumber && record.dob === dob
+    );
+
+    if (!student) {
+      const knownRegister = students.some(record => record.registerNumber === registerNumber);
+      showError(
+        knownRegister
+          ? "Date of birth does not match this sample record."
+          : "Register number not found. Please check the sample register number and try again.",
+        knownRegister ? dobInput : registerInput
+      );
+      return;
+    }
+
+    displayResult(student);
+  });
+
+  [registerInput, dobInput].forEach(input => {
+    input.addEventListener("input", () => {
+      input.removeAttribute("aria-invalid");
+      if (!errorMessage.hidden) {
+        errorMessage.hidden = true;
+        errorMessage.textContent = "";
+      }
+    });
+  });
+
+  document.getElementById("anotherButton").addEventListener("click", () => {
+    resultPanel.hidden = true;
+    form.reset();
+    clearErrors();
+    lookupSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    registerInput.focus({ preventScroll: true });
+  });
+
+  document.getElementById("downloadButton").addEventListener("click", () => {
+    // Uses the browser's built-in print dialog; choose "Save as PDF".
+    window.print();
+  });
+</script>
+</body>
+</html>
